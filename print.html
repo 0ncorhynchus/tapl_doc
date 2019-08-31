@@ -1,0 +1,793 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title></title>
+        
+        <meta name="robots" content="noindex" />
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="ch11/ch11.html"><strong aria-hidden="true">1.</strong> 11章</a></li><li><ol class="section"><li><a href="ch11/ch11_1.html"><strong aria-hidden="true">1.1.</strong> 11.1 基本型</a></li><li><a href="ch11/ch11_2.html"><strong aria-hidden="true">1.2.</strong> 11.2 Unit型</a></li><li><a href="ch11/ch11_3.html"><strong aria-hidden="true">1.3.</strong> 11.3 派生形式:逐次実行とワイルドカード</a></li><li><a href="ch11/ch11_4.html"><strong aria-hidden="true">1.4.</strong> 11.4 型指定</a></li><li><a href="ch11/ch11_5.html"><strong aria-hidden="true">1.5.</strong> 11.5 Let束縛</a></li><li><a href="ch11/ch11_6.html"><strong aria-hidden="true">1.6.</strong> 11.6 二つ組</a></li><li><a href="ch11/ch11_7.html"><strong aria-hidden="true">1.7.</strong> 11.7 組</a></li><li><a href="ch11/ch11_8.html"><strong aria-hidden="true">1.8.</strong> 11.8 レコード</a></li><li><a href="ch11/ch11_9.html"><strong aria-hidden="true">1.9.</strong> 11.9 和</a></li><li><a href="ch11/ch11_10.html"><strong aria-hidden="true">1.10.</strong> 11.10 バリアント</a></li><li><a href="ch11/ch11_11.html"><strong aria-hidden="true">1.11.</strong> 11.11 一般的再帰型</a></li><li><a href="ch11/ch11_12.html"><strong aria-hidden="true">1.12.</strong> 11.12 リスト</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title"></h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#11章-単純な拡張" id="11章-単純な拡張">11章 単純な拡張</a></h1>
+<p>この章で重要なのは <strong>派生形式</strong> の概念。</p>
+<h1><a class="header" href="#111-基本型" id="111-基本型">11.1 基本型</a></h1>
+<p>BoolとかNatとか。
+後の章ではStringやFloatも追加される。</p>
+<p>理論的な目的のためには、個々の基本型とその演算の詳細は捨象してしまったほうがよい場合も多い。</p>
+<h2><a class="header" href="#112-unit型" id="112-unit型">11.2 Unit型</a></h2>
+<p>要素が\(\mathrm{unit}\)のただ一つしか無い型。CやJavaのvoid型の役割に似ている。</p>
+<h4><a class="header" href="#新しい構文形式" id="新しい構文形式">新しい構文形式</a></h4>
+<p>\[
+\begin{align}
+\mathrm{t} ::= &amp; ... \\
+&amp; \mathrm{unit} \\
+\mathrm{v} ::= &amp; ... \\
+&amp; \mathrm{unit} \\
+\mathrm{T} ::= &amp; ... \\
+&amp; \mathrm{Unit}
+\end{align}
+\]</p>
+<h4><a class="header" href="#新しい型付け規則" id="新しい型付け規則">新しい型付け規則</a></h4>
+<p>\[
+\Gamma \vdash \mathrm{unit} : \mathrm{Unit}
+\]</p>
+<h4><a class="header" href="#新しい派生形式" id="新しい派生形式">新しい派生形式</a></h4>
+<p>\[
+\begin{align}
+\mathrm{t_1}; \mathrm{t_2} \stackrel{\text{def}}{=}
+&amp; (\lambda \mathrm{x}:\mathrm{Unit} . \mathrm{t_2}) \mathrm{t_1} \\
+&amp; (ただし \mathrm{x} \notin FV(\mathrm{t_2}))
+\end{align}
+\]</p>
+<h3><a class="header" href="#演習1121" id="演習1121">演習11.2.1</a></h3>
+<p>基本型としてUnit型のみを持つ単純型付きラムダ計算で、
+以下の条件を満たす項の列\(\mathrm{t}_1, \mathrm{t}_2, ...\)を作ることはできるか？
+各nに対して項\(\mathrm{t}_n\)は高々\(O(n)\)のサイズを持つが、
+それを正規形まで評価するには少なくとも\(O(2^n)\)ステップを必要とする。</p>
+<p>\[
+\begin{align}
+\mathrm{t}_1 &amp; = &amp; (\lambda \mathrm{x} : \mathrm{Unit} . \mathrm{x}) \mathrm{unit} \\
+\mathrm{t}_{i+1} &amp; = &amp;
+(\lambda \mathrm{f} : \mathrm{Unit} \to \mathrm{Unit} . f(f(\mathrm{unit})))
+(\lambda \mathrm{x} : \mathrm{Unit} . \mathrm{t}_i)
+\end{align}
+\]</p>
+<h2><a class="header" href="#113-派生形式逐次実行とワイルドカード" id="113-派生形式逐次実行とワイルドカード">11.3 派生形式:逐次実行とワイルドカード</a></h2>
+<p>逐次実行記法\(\mathrm{t}_1;\mathrm{t_2}\)は、\(\mathrm{t}_1\)を評価し、
+その自明な結果を捨てて、\(\mathrm{t_2}\)の評価へ移る。</p>
+<p>逐次実行の形式化には二通りある。
+一つは\(\mathrm{t}_1;\mathrm{t_2}\)は、\(\mathrm{t}_1\)を項の構文の定義における新しい選択肢として加える。</p>
+<p>\[
+\frac
+{\mathrm{t}_1 \to \mathrm{t_1'}}
+{\mathrm{t}_1;\mathrm{t_2} \to \mathrm{t_1'};\mathrm{t_2}} \tag{E-Seq}
+\]</p>
+<p>\[
+\mathrm{v_1};\mathrm{t_2} \to \mathrm{t_2} \tag{E-SeqNext}
+\]</p>
+<p>\[
+\frac
+{\Gamma \vdash \mathrm{t}_1 : \mathrm{Unit} \qquad \Gamma \vdash \mathrm{t_2} : \mathrm{T_2}}
+{\Gamma \vdash \mathrm{t}_1;\mathrm{t_2} : \mathrm{T_2}}
+\tag{T-Seq}
+\]</p>
+<h3><a class="header" href="#定理1131-逐次実行は派生形式である" id="定理1131-逐次実行は派生形式である">定理11.3.1 [逐次実行は派生形式である]</a></h3>
+<p>Unit型、逐次実行、E-Seq、E-SeqNext、T-Seqの規則を持つ単純型付きラムダ計算を
+\(\lambda^E\)と書く。
+また、Unitのみを持つ単純型付きラムダ計算を\(\lambda^I\)と書く。
+\(e \in \lambda^E \to \lambda^I\)を、外部言語を内部言語に翻訳する詳細化関数とする。
+\(e\)は\(\mathrm{t}_1;\mathrm{t_2}\)のすべての出現を、
+\((\lambda \mathrm{x}:\mathrm{Unit} . \mathrm{t_2}) \mathrm{t}_1\)へと置き換える。
+すると、\(\lambda^E\)の各項に対して、</p>
+<ul>
+<li>\(\mathrm{t} \to_E \mathrm{t'}\)のとき、\(e(\mathrm{t}) \to_I e(\mathrm{t'})\)であり、 逆に\(e(\mathrm{t}) \to_I \mathrm{u}\)であれば\(\lambda^E\)の項\(\mathrm{t'}\)が存在して\(\mathrm{u} = e(\mathrm{t'})\)かつ\(\mathrm{t} \to_E \mathrm{t'}\)</li>
+<li>\(\Gamma \vdash^E \mathrm{t} : \mathrm{T}\)のとき、かつそのときに限り\(\Gamma \vdash^I e(\mathrm{t}) : \mathrm{T}\)
+が成り立つ。</li>
+</ul>
+<h3><a class="header" href="#ワイルドカード" id="ワイルドカード">ワイルドカード</a></h3>
+<p>実際には引数の変数を抽象の本体で使わないような、「ダミー」のラムダ抽象を書く時に、
+束縛変数としてワイルドカード束縛子(_)を用いたい。</p>
+<p>つまり、\(\lambda _ : \mathrm{S} . \mathrm{t}\)を
+\(\lambda \mathrm{x} : \mathrm{S} . \mathrm{t}\)の略記として書く。</p>
+<h3><a class="header" href="#演習1132" id="演習1132">演習11.3.2</a></h3>
+<p>ワイルドカードを用いたラムダ抽象のための型付け規則と評価規則を定義し、
+それらが上記の略記から導出できることを証明せよ。</p>
+<p>\[
+\frac
+{\Gamma \vdash \mathrm{t}_2 : \mathrm{T}_2}
+{\Gamma \vdash \lambda _ : \mathrm{T}_1 . \mathrm{t}_2 : \mathrm{T}_1 \to \mathrm{T}_2}
+\tag{T-Wildcard}
+\]</p>
+<p>\[
+(\lambda _ : \mathrm{T}_{11} . \mathrm{t}_{12}) \mathrm{v}_2 \to \mathrm{t}_{12}
+\]</p>
+<h1><a class="header" href="#114-型指定" id="114-型指定">11.4 型指定</a></h1>
+<p>明示的に型を指定する。型\(\mathrm{T}\)を指定した項\(\mathrm{t}\)を、
+「\(\mathrm{t} \ \mathrm{as} \ \mathrm{T}\)」と書く。</p>
+<h4><a class="header" href="#新しい構文形式-1" id="新しい構文形式-1">新しい構文形式</a></h4>
+<p>\[
+\begin{align}
+t \ ::= \ &amp; ... \\
+&amp; \mathrm{t} \ \mathrm{as} \ \mathrm{T}
+\end{align}
+\]</p>
+<h4><a class="header" href="#新しい評価規則" id="新しい評価規則">新しい評価規則</a></h4>
+<p>\[
+\mathrm{v}_1 \ \mathrm{as} \ \mathrm{T} \to \mathrm{v}_1 \tag{E-Ascribe}
+\]</p>
+<p>\[
+\frac
+{\mathrm{t}_1 \to \mathrm{t}_1'}
+{\mathrm{t}_1 \ \mathrm{as} \ \mathrm{T} \to \mathrm{t}_1' \ \mathrm{as} \ \mathrm{T}}
+\tag{E-Ascribe1}
+\]</p>
+<h4><a class="header" href="#新しい型付け規則-1" id="新しい型付け規則-1">新しい型付け規則</a></h4>
+<p>\[
+\frac
+{\Gamma \vdash \mathrm{t}_1 : \mathrm{T}}
+{\Gamma \vdash \mathrm{t}_1 \ \mathrm{as} \ \mathrm{T} : \mathrm{T}}
+\tag{T-Ascribe}
+\]</p>
+<h3><a class="header" href="#演習1141" id="演習1141">演習11.4.1</a></h3>
+<ol>
+<li>型指定を派生形式として形式化せよ。
+「公式」の型付け規則および評価規則が、その形式化に何らかの適切な意味で対応する事を証明せよ。</li>
+<li>評価規則E-AscribeとE-Ascribe1の代わりに、以下の「先行的(eager)」な規則が与えられたとする。
+\[ \mathrm{t}_1 \ \mathrm{as} \ \mathrm{T} \to \mathrm{t}_1 \tag{E-AscribeEager} \]
+この規則は、型指定に到達次第、型指定を除去する。この場合にも、型指定を派生形式として扱うことはできるか。</li>
+</ol>
+<h1><a class="header" href="#115-let束縛" id="115-let束縛">11.5 Let束縛</a></h1>
+<p>MLでは\(\mathrm{let} \ \mathrm{x} = \mathrm{t}_1 \ \mathrm{in} \ \mathrm{t}_2\)と書くと、
+「式\(\mathrm{t}_1\)を評価し、その結果の値に名前\(\mathrm{x}\)を束縛した状態で\(\mathrm{t}_2\)を評価せよ」
+という意味になる。</p>
+<h4><a class="header" href="#新しい構文形式-2" id="新しい構文形式-2">新しい構文形式</a></h4>
+<p>\[
+\begin{align}
+t \ ::= \ &amp; ... \\
+&amp; \mathrm{let} \ \mathrm{x}=\mathrm{t} \ \mathrm{in} \ \mathrm{t} \tag{let束縛}
+\end{align}
+\]</p>
+<h4><a class="header" href="#新しい評価規則-1" id="新しい評価規則-1">新しい評価規則</a></h4>
+<p>\[
+\mathrm{let} \ \mathrm{x}=\mathrm{v}_1 \ \mathrm{in} \ \mathrm{t}_2
+\to
+[\mathrm{x} \mapsto \mathrm{v}_1]\mathrm{t}_2 \tag{E-LetV}
+\]</p>
+<h4><a class="header" href="#新しい型付け規則-2" id="新しい型付け規則-2">新しい型付け規則</a></h4>
+<p>\[
+\frac
+{\mathrm{t}_1 \to \mathrm{t}_1'}
+{
+\mathrm{let} \ \mathrm{x}=\mathrm{t}_1 \ \mathrm{in} \ \mathrm{t}_2
+\to
+\mathrm{let} \ \mathrm{x}=\mathrm{t}_1' \ \mathrm{in} \ \mathrm{t}_2
+}
+\tag{E-Let}
+\]</p>
+<h3><a class="header" href="#演習1151" id="演習1151">演習11.5.1</a></h3>
+<p>型検査器letexerciseは、let式の不完全な実装である。基本的な構文解析と表示の関数は実装されているが、
+eval1関数およびtypeof関数はTmLetのための節が欠けている。これを完成させよ。</p>
+<h4><a class="header" href="#新しい派生形式-1" id="新しい派生形式-1">新しい派生形式</a></h4>
+<p>\[
+\mathrm{let} \ \mathrm{x}=\mathrm{t}_1 \ \mathrm{in} \ \mathrm{t}_2
+\stackrel{\text{def}}{=}
+(\lambda \mathrm{x} : \mathrm{T}_1 . \mathrm{t}_2) \mathrm{t}_1
+\]</p>
+<h3><a class="header" href="#演習1152" id="演習1152">演習11.5.2</a></h3>
+<p>letを派生形式として定義する別の方法として、直ちに「実行」する方法、すなわち
+\(\mathrm{let} \ \mathrm{x}=\mathrm{t}_1 \ \mathrm{in} \ \mathrm{t}_2\)を、
+本体を置換した\([\mathrm{x} \mapsto \mathrm{t}_1]\mathrm{t}_2\)の略記とみなす方法が考えられる。
+これは良いアイデアだろうか？</p>
+<p>ダメ。</p>
+<ol>
+<li>評価順が変わってしまう。</li>
+<li>\(\mathrm{t}_1\)が正しく型付けできないことを保証できなくなる。</li>
+</ol>
+<h1><a class="header" href="#116-二つ組" id="116-二つ組">11.6 二つ組</a></h1>
+<h4><a class="header" href="#新しい構文形式-3" id="新しい構文形式-3">新しい構文形式</a></h4>
+<p>\[
+\begin{align}
+\mathrm{t} \ ::= \ &amp; ... \\
+&amp; \{\mathrm{t}, \mathrm{t}\} \tag{二つ組} \\
+&amp; \mathrm{t}.1 \tag{第一要素の射影} \\
+&amp; \mathrm{t}.2 \tag{第二要素の射影} \\
+\mathrm{v} \ ::= \ &amp; ... \\
+&amp; \{\mathrm{v}, \mathrm{v}\} \tag{二つ組値} \\
+\mathrm{T} \ ::= \ &amp; ... \\
+&amp; \mathrm{T} \times \mathrm{T} \tag{直積型}
+\end{align}
+\]</p>
+<h4><a class="header" href="#新しい評価規則-2" id="新しい評価規則-2">新しい評価規則</a></h4>
+<p>\[
+\{\mathrm{v}_1, \mathrm{v}_2\}.1 \to \mathrm{v}_1 \tag{E-PairBeta1}
+\]
+\[
+\{\mathrm{v}_1, \mathrm{v}_2\}.2 \to \mathrm{v}_2 \tag{E-PairBeta2}
+\]
+\[
+\frac
+{\mathrm{t}_1 \to \mathrm{t}_1'}
+{\mathrm{t}_1.1 \to \mathrm{t}_1'.1}
+\tag{E-Proj1}
+\]
+\[
+\frac
+{\mathrm{t}_1 \to \mathrm{t}_1'}
+{\mathrm{t}_1.2 \to \mathrm{t}_1'.2}
+\tag{E-Proj2}
+\]
+\[
+\frac
+{\mathrm{t}_1 \to \mathrm{t}_1'}
+{\{\mathrm{t}_1, \mathrm{t}_2\} \to \{\mathrm{t}_1', \mathrm{t}_2\}}
+\tag{E-Pair1}
+\]
+\[
+\frac
+{\mathrm{t}_2 \to \mathrm{t}_2'}
+{\{\mathrm{v}_1, \mathrm{t}_2\} \to \{\mathrm{v}_1, \mathrm{t}_2'\}}
+\tag{E-Pair2}
+\]</p>
+<h4><a class="header" href="#新しい型付け規則-3" id="新しい型付け規則-3">新しい型付け規則</a></h4>
+<p>\[
+\frac
+{\Gamma \vdash \mathrm{t}_1 : \mathrm{T}_1 \qquad \Gamma \vdash \mathrm{t}_2 : \mathrm{T}_2}
+{\Gamma \vdash \{\mathrm{t}_1, \mathrm{t}_2\} : \mathrm{T}_1 \times \mathrm{T}_2}
+\tag{T-Pair}
+\]
+\[
+\frac
+{\Gamma \vdash \mathrm{t}_1 : \mathrm{T}_{11} \times \mathrm{T}_{12}}
+{\Gamma \vdash \mathrm{t}_1.1 : \mathrm{T}_{11}}
+\tag{T-Proj1}
+\]
+\[
+\frac
+{\Gamma \vdash \mathrm{t}_1 : \mathrm{T}_{11} \times \mathrm{T}_{12}}
+{\Gamma \vdash \mathrm{t}_1.2 : \mathrm{T}_{12}}
+\tag{T-Proj2}
+\]</p>
+<h1><a class="header" href="#117-組" id="117-組">11.7 組</a></h1>
+<h4><a class="header" href="#新しい構文形式-4" id="新しい構文形式-4">新しい構文形式</a></h4>
+<p>\[
+\begin{align}
+\mathrm{t} \ ::= \ &amp; ... \\
+&amp; \{{\mathrm{t}_i}^{i \in 1..n}\} \tag{組} \\
+&amp; \mathrm{t}.\mathrm{i} \tag{射影} \\
+\mathrm{v} \ ::= \ &amp; ... \\
+&amp; \{{\mathrm{v}_i}^{i \in 1..n}\} \tag{組の値} \\
+\mathrm{T} \ ::= \ &amp; ... \\
+&amp; \{{\mathrm{T}_i}^{i \in 1..n}\} \tag{組の型}
+\end{align}
+\]</p>
+<h4><a class="header" href="#新しい評価規則-3" id="新しい評価規則-3">新しい評価規則</a></h4>
+<p>\[
+\{{\mathrm{v}_i}^{i \in 1..n}\}.\mathrm{j} \to \mathrm{v}_j \tag{E-ProjTuple}
+\]
+\[
+\frac
+{\mathrm{t}_1 \to \mathrm{t}_1'}
+{\mathrm{t}_1.\mathrm{i} \to \mathrm{t}_1'.\mathrm{i}}
+\tag{E-Proj}
+\]
+\[
+\frac
+{\mathrm{t}_j \to \mathrm{t}_j'}
+{
+\{{\mathrm{v}_i}^{i \in 1..j-1}, \mathrm{t}_j, {\mathrm{t}_k}^{k \in j+1..n}\}
+\to
+\{{\mathrm{v}_i}^{i \in 1..j-1}, \mathrm{t}_j', {\mathrm{t}_k}^{k \in j+1..n}\}
+}
+\tag{E-Tuple}
+\]</p>
+<h4><a class="header" href="#新しい型付け規則-4" id="新しい型付け規則-4">新しい型付け規則</a></h4>
+<p>\[
+\frac
+{各iに対して \Gamma \vdash \mathrm{t}_i : \mathrm{T}_i}
+{\Gamma \vdash \{\mathrm{t}_1, \mathrm{t}_2\} : \mathrm{T}_1 \times \mathrm{T}_2}
+\tag{T-Tuple}
+\]
+\[
+\frac
+{\Gamma \vdash \mathrm{t}_1 : \mathrm{T}_{11} \times \mathrm{T}_{12}}
+{\Gamma \vdash \{{\mathrm{t}_i}^{i \in 1..n}\} : \{{\mathrm{T}_i}^{i \in 1..n}\}}
+\tag{T-Proj}
+\]</p>
+<h1><a class="header" href="#118-レコード" id="118-レコード">11.8 レコード</a></h1>
+<h4><a class="header" href="#新しい構文形式-5" id="新しい構文形式-5">新しい構文形式</a></h4>
+<p>\[
+\begin{align}
+\mathrm{t} \ ::= \ &amp; ... \\
+&amp; \{{\mathrm{l}_i = \mathrm{t}_i}^{i \in 1..n}\} \tag{レコード} \\
+&amp; \mathrm{t}.\mathrm{l} \tag{射影} \\
+\mathrm{v} \ ::= \ &amp; ... \\
+&amp; \{{\mathrm{l}_i = \mathrm{v}_i}^{i \in 1..n}\} \tag{レコードの値} \\
+\mathrm{T} \ ::= \ &amp; ... \\
+&amp; \{{\mathrm{l}_i : \mathrm{T}_i}^{i \in 1..n}\} \tag{レコードの型}
+\end{align}
+\]</p>
+<h4><a class="header" href="#新しい評価規則-4" id="新しい評価規則-4">新しい評価規則</a></h4>
+<p>\[
+\{{\mathrm{l}_i = \mathrm{v}_i}^{i \in 1..n}\}.\mathrm{l}_j \to \mathrm{v}_j \tag{E-ProjRcd}
+\]
+\[
+\frac
+{\mathrm{t}_1 \to \mathrm{t}_1'}
+{\mathrm{t}_1.\mathrm{l} \to \mathrm{t}_1'.\mathrm{l}}
+\tag{E-Proj}
+\]
+\[
+\frac
+{\mathrm{t}_j \to \mathrm{t}_j'}
+{
+\{{\mathrm{l}_i = \mathrm{v}_i}^{i \in 1..j-1}, \mathrm{l}_j = \mathrm{v}_j, {\mathrm{l}_i = \mathrm{t}_i}^{i \in j+1..n}\}
+\to
+\{{\mathrm{l}_i = \mathrm{v}_i}^{i \in 1..j-1}, \mathrm{l}_j = \mathrm{v}_j', {\mathrm{l}_i = \mathrm{t}_i}^{i \in j+1..n}\}
+}
+\tag{E-Rcd}
+\]</p>
+<h4><a class="header" href="#新しい型付け規則-5" id="新しい型付け規則-5">新しい型付け規則</a></h4>
+<p>\[
+\frac
+{各iに対して\Gamma \vdash \mathrm{t}_i : \mathrm{T}_i}
+{\Gamma \vdash \{{\mathrm{l}_i = \mathrm{t}_i}^{i \in 1..n}\} : \{{\mathrm{l}_i : \mathrm{T}_i}^{i \in 1..n}\}}
+\tag{T-Rcd}
+\]
+\[
+\frac
+{\Gamma \vdash \mathrm{t}_1 : \{{\mathrm{l}_i : \mathrm{T}_i}^{i in 1..n}\}}
+{\Gamma \vdash \mathrm{t}_1.\mathrm{l}_j : \mathrm{T}_j}
+\tag{T-Proj}
+\]</p>
+<h3><a class="header" href="#演習1181" id="演習1181">演習11.8.1</a></h3>
+<p>比較のため、E-ProjRcdをより明示的に記述せよ。</p>
+<h3><a class="header" href="#演習1182" id="演習1182">演習11.8.2</a></h3>
+<p>パターンマッチ（文章略）</p>
+<h4><a class="header" href="#新しい構文形式-6" id="新しい構文形式-6">新しい構文形式</a></h4>
+<p>\[
+\begin{align}
+p \ ::= \ &amp; \mathrm{x} \tag{変数パターン} \\
+&amp; \{{\mathrm{l}_i = \mathrm{p}_i}^{i \in 1..n}\} \tag{レコードパターン} \\
+t \ ::= \ &amp; ... \\
+&amp; \mathrm{let} \ \mathrm{p} = \mathrm{t} \ \mathrm{in} \ \mathrm{t} \tag{パターン束縛} \\
+\end{align}
+\]</p>
+<h4><a class="header" href="#パターンマッチの規則" id="パターンマッチの規則">パターンマッチの規則</a></h4>
+<p>\[
+match(\mathrm{x}, \mathrm{v}) = [\mathrm{x} \mapsto \mathrm{v}] \tag{M-Var}
+\]
+\[
+\frac
+{各iに対してmatch(\mathrm{p}_i, \mathrm{v}_i) = \sigma_i}
+{
+match(\{{\mathrm{l}_i = \mathrm{p}_i}^{i \in 1..n}\}, \{{\mathrm{l}_i = \mathrm{v}_i}^{i \in 1..n}\})
+=
+\sigma_1 \circ \cdot \cdot \cdot \circ \sigma_n
+}
+\tag{M-Rcd}
+\]</p>
+<h4><a class="header" href="#新しい評価規則-5" id="新しい評価規則-5">新しい評価規則</a></h4>
+<p>\[
+\mathrm{let} \ \mathrm{p} = \mathrm{v}_1 \ \mathrm{in} \ \mathrm{t}_2
+\to
+match(\mathrm{p}, \mathrm{v}_1) \mathrm{t}_2 \tag{E-LetV}
+\]
+\[
+\frac
+{\mathrm{t}_1 \to \mathrm{t}_1'}
+{
+\mathrm{let} \ \mathrm{p} = \mathrm{t}_1 \ \mathrm{in} \ \mathrm{t}_2
+\to
+\mathrm{let} \ \mathrm{p} = \mathrm{t}_1' \ \mathrm{in} \ \mathrm{t}_2
+}
+\tag{E-Let}
+\]</p>
+<h1><a class="header" href="#119-和" id="119-和">11.9 和</a></h1>
+<p>ここでは、和型の型の一意性のために型注釈を必要とする構文形式をとっている。</p>
+<h4><a class="header" href="#新しい構文形式-7" id="新しい構文形式-7">新しい構文形式</a></h4>
+<p>\[
+\begin{align}
+\mathrm{t} \ ::= \ &amp; ... \\
+&amp; \mathrm{inl \ t \ as \ T} \tag{タグ付け（左）} \\
+&amp; \mathrm{inr \ t \ as \ T} \tag{タグ付け（左）} \\
+&amp; \mathrm{case \ t \ of \ inl \ x \Rightarrow t \ | \ inr \ x \Rightarrow t} \tag{場合分け} \\
+\mathrm{v} \ ::= \ &amp; ... \\
+&amp; \mathrm{inl \ v \ as \ T} \tag{タグ付けの値（左）} \\
+&amp; \mathrm{inr \ v \ as \ T} \tag{タグ付けの値（右）} \\
+\mathrm{T} \ ::= \ &amp; ... \\
+&amp; \mathrm{T + T} \tag{和型}
+\end{align}
+\]</p>
+<h4><a class="header" href="#新しい評価規則-6" id="新しい評価規則-6">新しい評価規則</a></h4>
+<p>\[
+\mathrm{case(inl \ v_0 \ as T_0) \ of \ inl \ x_1 \Rightarrow t_1 \ | \ inr \ x_2 \Rightarrow t_2}
+\to [\mathrm{x}_1 \mapsto \mathrm{v_0}]\mathrm{t}_1 \tag{E-CaseInl}
+\]
+\[
+\mathrm{case(inr \ v_0 \ as T_0) \ of \ inl \ x_1 \Rightarrow t_1 \ | \ inr \ x_2 \Rightarrow t_2}
+\to [\mathrm{x}_2 \mapsto \mathrm{v_0}]\mathrm{t}_2 \tag{E-CaseInR}
+\]
+\[
+\frac
+{\mathrm{t}_0 \to \mathrm{t}_0'}
+{
+\mathrm{case \ t_0 \ of \ inl \ x_1 \Rightarrow t_1 \ | \ x_2 \Rightarrow t_2}
+\to
+\mathrm{case \ t_0' \ of \ inl \ x_1 \Rightarrow t_1 \ | \ x_2 \Rightarrow t_2}
+}
+\tag{E-Case}
+\]
+\[
+\frac
+{\mathrm{t}_1 \to \mathrm{t}_1'}
+{\mathrm{inl \ t_1 \ as \ T_2} \to \mathrm{inl \ t_1' \ as \ T_2}}
+\tag{E-Inl}
+\]
+\[
+\frac
+{\mathrm{t}_1 \to \mathrm{t}_1'}
+{\mathrm{inr \ t_1 \ as \ T_2} \to \mathrm{inr \ t_1' \ as \ T_2}}
+\tag{E-Inr}
+\]</p>
+<h4><a class="header" href="#新しい型付け規則-6" id="新しい型付け規則-6">新しい型付け規則</a></h4>
+<p>\[
+\frac
+{\Gamma \vdash \mathrm{t}_1 : \mathrm{T}_1}
+{\Gamma \vdash \mathrm{inl \ t_1 \ as \ T_1 + T_2} : \mathrm{T}_1 + \mathrm{T}_2}
+\tag{T-Inl}
+\]
+\[
+\frac
+{\Gamma \vdash \mathrm{t}_1 : \mathrm{T}_2}
+{\Gamma \vdash \mathrm{inr \ t_1 \ as \ T_1 + T_2} : \mathrm{T}_1 + \mathrm{T}_2}
+\tag{T-Inr}
+\]
+\[
+\frac
+{
+\Gamma \vdash \mathrm{t}_0 : \mathrm{T_1 + T_2} \qquad
+\Gamma, \mathrm{x_1:T_1} \vdash \mathrm{t_1:T} \qquad
+\Gamma, \mathrm{x_2:T_2} \vdash \mathrm{t_2:T} \qquad
+}
+{\Gamma \vdash \mathrm{case \ t_0 \ of \ inl \ x_1 \Rightarrow t_1 \ | \ inr \ x_2 \Rightarrow t_2 : T}}
+\tag{T-Case}
+\]</p>
+<h3><a class="header" href="#演習1191" id="演習1191">演習11.9.1</a></h3>
+<p>caseの型付け規則と図8-1のifの型付け規則の類似性に着目せよ。ifは分岐に対して情報を渡さない、caseを縮退した形の一種とみなせる。
+この直観を形式化するため、和型とUnitを用いてtrue、false、ifを派生形式として定義せよ。</p>
+<h1><a class="header" href="#1110-バリアント" id="1110-バリアント">11.10 バリアント</a></h1>
+<p>一般化したラベル付きの和型。</p>
+<h4><a class="header" href="#新しい構文形式-8" id="新しい構文形式-8">新しい構文形式</a></h4>
+<p>\[
+\begin{align}
+\mathrm{t} \ ::= \ &amp; ... \\
+&amp; \mathrm{&lt;l=t&gt; \ as \ T} \tag{タグ付け} \\
+&amp; \mathrm{case \ t \ of} \ &lt;\mathrm{l}_i=\mathrm{x}_i&gt; \Rightarrow {\mathrm{t}_i}^{i \in 1..n} \tag{場合分け} \\
+\mathrm{v} \ ::= \ &amp; ... \\
+&amp; \mathrm{&lt;l=t&gt; \ as \ T} \tag{タグ付けの値} \\
+\mathrm{T} \ ::= \ &amp; ... \\
+&amp; &lt;{\mathrm{l}_i:\mathrm{T}_i}^{i \in 1..n}&gt; \tag{バリアント型}
+\end{align}
+\]</p>
+<h4><a class="header" href="#新しい評価規則-7" id="新しい評価規則-7">新しい評価規則</a></h4>
+<p>\[
+\mathrm{case}(&lt;\mathrm{l}_j = \mathrm{v}_j \ \mathrm{as \ T}&gt;) \ \mathrm{of} \
+{&lt;\mathrm{l}_i = \mathrm{x}_i&gt; \Rightarrow \mathrm{t}_i}^{i \in 1..n}
+\to [\mathrm{x}_j \mapsto \mathrm{v}_j]\mathrm{t}_j
+\tag{E-CaseVariant}
+\]
+\[
+\frac
+{\mathrm{t}_0 \to \mathrm{t}_0'}
+{
+\mathrm{case \ t_0 \ of} \ {&lt;\mathrm{l}_i = \mathrm{x}_i&gt; \Rightarrow \mathrm{t}_i}^{i \in 1..n}
+\to
+\mathrm{case \ t_0' \ of} \ {&lt;\mathrm{l}_i = \mathrm{x}_i&gt; \Rightarrow \mathrm{t}_i}^{i \in 1..n}
+}
+\tag{E-Case}
+\]
+\[
+\frac
+{\mathrm{t}_i \to \mathrm{t}_i'}
+{
+&lt;\mathrm{l}_i = \mathrm{t}_i&gt; \ \mathrm{as \ T}
+\to
+&lt;\mathrm{l}_i = \mathrm{t}_i'&gt; \ \mathrm{as \ T}
+}
+\tag{E-Variant}
+\]</p>
+<h4><a class="header" href="#新しい型付け規則-7" id="新しい型付け規則-7">新しい型付け規則</a></h4>
+<p>\[
+\frac
+{\Gamma \vdash \mathrm{t}_j : \mathrm{T}_j}
+{\Gamma \vdash &lt;\mathrm{l}_j = \mathrm{t}_j&gt; \mathrm{as} &lt;{\mathrm{l}_i : \mathrm{T}_i}^{i \in 1..n}&gt; : &lt;{\mathrm{l}_i : \mathrm{T}_i}^{i \in 1..n}&gt;}
+\tag{T-Variant}
+\]
+\[
+\frac
+{
+\Gamma \vdash \mathrm{t}_0 : &lt;{\mathrm{l}_i : \mathrm{T}_i}^{i \in 1..n}&gt; \qquad
+各iに対して\Gamma, \mathrm{x}_i : \mathrm{T}_i \vdash \mathrm{t}_i : \mathrm{T}
+}
+{\Gamma \vdash \mathrm{case \ t_0 \ of} \ {&lt;\mathrm{l}_i = \mathrm{x}_i&gt;} \Rightarrow \mathrm{t}_i}^{i \in 1..n} : \mathrm{T}
+\tag{T-Case}
+\]</p>
+<h4><a class="header" href="#オプション" id="オプション">オプション</a></h4>
+<pre><code>    OptionalNat = &lt;none:Unit, some:Nat&gt;;
+</code></pre>
+<h4><a class="header" href="#列挙型" id="列挙型">列挙型</a></h4>
+<pre><code>    Weekday = &lt;monday:Unit, tuesday:Unit, wednesday:Unit, thursday:Unit, friday:Unit&gt;;
+</code></pre>
+<h4><a class="header" href="#単一フィールドのバリアント" id="単一フィールドのバリアント">単一フィールドのバリアント</a></h4>
+<pre><code>    V = &lt;l:T&gt;;
+</code></pre>
+<h4><a class="header" href="#直和としてのバリアント" id="直和としてのバリアント">直和としてのバリアント</a></h4>
+<p>直和と呼ばれることもある。合併型というのもあるがそれは15.7節で。</p>
+<h4><a class="header" href="#dynamic型" id="dynamic型">Dynamic型</a></h4>
+<p>実行時に型をチェックするDynamic型は実質、型をラベルとする無限の直和と考えられる。</p>
+<h1><a class="header" href="#1111-一般的再帰型" id="1111-一般的再帰型">11.11 一般的再帰型</a></h1>
+<p>再帰関数を定義するためにfixコンビネータを用いたいが、
+停止しない計算に陥る可能性のある式は、単純型だけを用いては型付けできない。（第12章）
+そこで、fixをプリミティブとして導入する。</p>
+<h4><a class="header" href="#新しい構文形式-9" id="新しい構文形式-9">新しい構文形式</a></h4>
+<p>\[
+\begin{align}
+\mathrm{t} \ ::= \ &amp; ... \\
+&amp; \mathrm{fix \ t} \tag{tの不動点}
+\end{align}
+\]</p>
+<h4><a class="header" href="#新しい評価規則-8" id="新しい評価規則-8">新しい評価規則</a></h4>
+<p>\[
+\mathrm{fix(\lambda x : T_1 . t_2)} \to [\mathrm{x} \mapsto \mathrm{fix(\lambda x : T_1 . t_2)}]\mathrm{t}_2
+\tag{E-FixBeta}
+\]
+\[
+\frac
+{\mathrm{t}_1 \to \mathrm{t}_1'}
+{\mathrm{fix \ t_1} \to \mathrm{fix \ t_1'}}
+\tag{E-Fix}
+\]</p>
+<h4><a class="header" href="#新しい派生形式-2" id="新しい派生形式-2">新しい派生形式</a></h4>
+<p>\[
+\mathrm{letrec \ x : T_1 = t_1 \ in \ t_2} \stackrel{\text{def}}{=}
+\mathrm{let \ x = fix(\lambda x:T_1 . t_1) \ in \ t_2}
+\]</p>
+<h3><a class="header" href="#演習11111" id="演習11111">演習11.11.1</a></h3>
+<p>equal、plus、timesおよびfactorialをfixを用いて定義せよ。</p>
+<h3><a class="header" href="#演習11112" id="演習11112">演習11.11.2</a></h3>
+<p>演習11.11.1でのplus、times、factorialの定義を、fixの代わりにletrecを使って書き直せ。</p>
+<h1><a class="header" href="#1112-リスト" id="1112-リスト">11.12 リスト</a></h1>
+<h4><a class="header" href="#新しい構文形式-10" id="新しい構文形式-10">新しい構文形式</a></h4>
+<p>\[
+\begin{align}
+\mathrm{t} \ ::= \ &amp; ... \\
+&amp; \mathrm{nil[T]} \tag{空のリスト} \\
+&amp; \mathrm{cons[T] \ t \ t} \tag{リスト構築子} \\
+&amp; \mathrm{isnil[T] \ t} \tag{リストが空かどうかの検査} \\
+&amp; \mathrm{head[T] \ t} \tag{リストの先頭の要素（head）} \\
+&amp; \mathrm{tail[T] \ t} \tag{リストの残りの部分（tail）} \\
+\mathrm{v} \ ::= \ &amp; ... \\
+&amp; \mathrm{nil[T]} \tag{空のリスト} \\
+&amp; \mathrm{const[T] \ t \ t} \tag{リスト構築子} \\
+\mathrm{T} \ ::= \ &amp; ... \\
+&amp; \mathrm{List \ T} \tag{リストの型}
+\end{align}
+\]</p>
+<h4><a class="header" href="#新しい評価規則-9" id="新しい評価規則-9">新しい評価規則</a></h4>
+<p>\[
+\frac
+{\mathrm{t}_1 \to \mathrm{t}_1'}
+{\mathrm{cons[T] \ t_1 \ t_2} \to \mathrm{cons[T] \ t_1' \ t_2}}
+\tag{E-Cons1}
+\]
+\[
+\frac
+{\mathrm{t}_2 \to \mathrm{t}_2'}
+{\mathrm{cons[T] \ v_1 \ t_2} \to \mathrm{cons[T] \ v_1' \ t_2}}
+\tag{E-Cons2}
+\]</p>
+<p>\[
+\mathrm{isnil[S](nil[T])} \to \mathrm{true} \tag{E-IsnilNil}
+\]</p>
+<p>\[
+\mathrm{isnil[S](cons[T] \ v_1 \ v_2) \to false} \tag{E-IsnilCons}
+\]</p>
+<p>\[
+\]</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+        
+        
+
+    </body>
+</html>
